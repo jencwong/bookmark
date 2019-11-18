@@ -3,3 +3,4 @@
 # Contributors
 
 - Joshua Kiley
+- Jennie Wong
