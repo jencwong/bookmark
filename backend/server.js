@@ -32,15 +32,15 @@ mongoose.connection.once("open", () => {
   console.log("MongoDB connected");
 });
 
-//==============================
-//     CONTROLLER CONFIGURATION
-//==============================
+const whitelist = "http://localhost:3000";
+
 const corsOptions = {
   origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
+    // if (whitelist.indexOf(origin) !== -1) { temporary solution by Joem don't change CORS is still blocking
+    if (true) {
       callback(null, true);
     } else {
-      ballback(new Error("Not allowed by CORS"));
+      callback(new Error("Not allowed by CORS"));
     }
   }
 };
@@ -50,6 +50,13 @@ const corsOptions = {
 //==============================
 app.use(express.json());
 app.use(cors(corsOptions));
+
+//==============================
+//     CONTROLLER CONFIGURATION
+//==============================
+
+const bookmarksController = require("./controllers/bookmarks.js");
+app.use("/bookmarks", bookmarksController);
 // CONTROLLERS
 
 //==============================
