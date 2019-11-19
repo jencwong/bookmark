@@ -36,7 +36,7 @@ bookmarks.post("/", (req, res) => {
 
 // UPDATE - EDIT ONE BOOKMARK
 bookmarks.put("/:id", (req, res) => {
-  Holiday.findByIdAndUpdate(
+  Bookmark.findByIdAndUpdate(
     req.params.id,
     req.body,
     { new: true },
