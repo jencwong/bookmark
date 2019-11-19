@@ -35,7 +35,7 @@ const seedDB = () => {
   const dbURI = `mongodb://localhost:27017/${dbName}`;
   const dbConnection = mongoose.connection;
 
-  dbConnection.on("error", (err) => console.log("DB Connection Error: ", err));
+  dbConnection.on("error", err => console.log("DB Connection Error: ", err));
   dbConnection.on("connected", () => console.log("DB Connected to: ", dbURI));
   dbConnection.on("disconnected", () => console.log("DB Disconnected"));
 
