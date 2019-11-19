@@ -21,6 +21,7 @@ class FormNew extends Component {
             value={this.state.title}
             placeholder="title"
             onChange={this.handleChange}
+            autoComplete="off"
           />
           <label htmlFor="url"></label>
           <input
@@ -30,6 +31,7 @@ class FormNew extends Component {
             value={this.state.url}
             placeholder="url"
             onChange={this.handleChange}
+            autoComplete="off"
           />
           <input type="submit" value="ADD BOOKMARK" />
         </form>
@@ -37,3 +39,5 @@ class FormNew extends Component {
     );
   }
 }
+
+export default FormNew;
