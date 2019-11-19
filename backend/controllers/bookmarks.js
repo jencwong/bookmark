@@ -50,5 +50,13 @@ bookmarks.put("/:id", (req, res) => {
 });
 
 // DELETE - REMOVE ONE BOOKMARK
+bookmarks.delete("/:id", (req, res) => {
+  Bookmark.findByIdAndRemove(req.params.id, (err, deletedBookmark) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+    }
+    res.status(200).json(deletedBookmark);
+  });
+});
 
 module.exports = bookmarks;
