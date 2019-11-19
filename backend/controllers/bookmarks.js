@@ -1,29 +1,54 @@
+//==============================
+//       DEPENDENCIES
+//==============================
 const express = require("express");
 const bookmarks = express.Router();
 const Bookmark = require("../models/bookmarks.js");
 
-// get routes to show all bookmarks
+//==============================
+//          ROUTES
+//==============================
+// INDEX - SHOW ALL BOOKMARKS
 bookmarks.get("/", (req, res) => {
   Bookmark.find({}, (err, foundBookmarks) => {
     if (err) {
-      res.status(400).json({ error: err.message });
+      res.status(400).json({
+        error: err.message
+      });
     }
     res.status(200).json(foundBookmarks);
   });
 });
 
-// post route to create a new bookmark
+// POST - CREATE NEW BOOKMARK
 bookmarks.post("/", (req, res) => {
   //   res.send(req);
-  Bookmark.create(req.body, (error, createdBookmark) => {
-    if (error) {
+  Bookmark.create(req.body, (err, createdBookmark) => {
+    if (err) {
       res.status(400).json({
-        error: error.message
+        error: err.message
       });
     } else {
       res.status(200).send(createdBookmark);
     }
   });
 });
+
+// UPDATE - EDIT ONE BOOKMARK
+bookmarks.put("/:id", (req, res) => {
+  Holiday.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (err, updatedBookmark) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+      }
+      res.status(200).json(updatedBookmark);
+    }
+  );
+});
+
+// DELETE - REMOVE ONE BOOKMARK
 
 module.exports = bookmarks;
