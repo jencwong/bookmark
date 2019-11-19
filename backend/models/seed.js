@@ -54,6 +54,6 @@ const seedDB = () => {
   });
 };
 
-// seedDB();
+seedDB();
 
 module.exports = seedBookmarks;

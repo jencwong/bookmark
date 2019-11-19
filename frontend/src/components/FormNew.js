@@ -7,12 +7,30 @@ class FormNew extends Component {
       title: "",
       url: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  async handleSubmit(event) {
+    event.preventDefault();
+    this.setState({
+      title: "",
+      url: ""
+    });
+    this.props.getBookmarks();
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.currentTarget.name]: event.currentTarget.value
+    });
+  }
+
   render() {
     return (
       <div>
         <h2>New Bookmark</h2>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="title"></label>
           <input
             type="text"

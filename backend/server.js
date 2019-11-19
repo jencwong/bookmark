@@ -13,7 +13,7 @@ const PORT = 3003;
 //     MONGOOSE CONNECTION
 //==============================
 // ERROR
-mongoose.connection.on("error", (err) => {
+mongoose.connection.on("error", err => {
   console.log(err.message + " MongoDB broke");
 });
 // DISCONNECTED
@@ -36,10 +36,10 @@ mongoose.connection.once("open", () => {
 //      CONFIGURATION
 //==============================
 const bookmarksController = require("./controllers/bookmarks.js");
-const whitelist = ["http://localhost:3003"];
+const whitelist = ["http://localhost:3000"];
 const corsOptions = {
   origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+    if (whitelist.indexOf(origin) !== -1 || origin) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
