@@ -14,9 +14,9 @@ class FormUpdate extends Component {
   }
 
   handleChange(event) {
-    const { id, value } = event.target;
+    const { name, value } = event.target;
     this.setState({
-      [id]: value
+      [name]: value
     });
   }
 
@@ -28,16 +28,25 @@ class FormUpdate extends Component {
   }
 
   async handleSubmit(event) {
-    event.preventDefault();
-    const response = await axios.post(`${baseURL}/bookmarks`, {
-      title: this.state.title,
-      url: this.state.url
-    });
-    this.setState({
-      title: "",
-      url: ""
-    });
-    this.props.handleAddBookmark(response);
+    try {
+      event.preventDefault();
+      console.log("Update Submitted");
+      const bookmarkId = this.props.bookmark._id;
+      const url = `${baseURL}/bookmarks/${bookmarkId}`;
+      const payload = {
+        title: this.state.title,
+        url: this.state.url
+      };
+      const updatedBookmark = await axios.put(url, payload);
+      console.log("PUT: ", updatedBookmark);
+      this.getBookmarks();
+      this.setState({
+        title: "",
+        url: ""
+      });
+    } catch (err) {
+      console.log("Update Error: ", err);
+    }
   }
 
   render() {
@@ -52,6 +61,7 @@ class FormUpdate extends Component {
             id="title"
             name="title"
             placeholder="title"
+            value={this.state.title}
             onChange={this.handleChange}
             autoComplete="off"
           />
@@ -61,6 +71,7 @@ class FormUpdate extends Component {
             type="text"
             id="url"
             name="url"
+            value={this.state.url}
             placeholder="url"
             onChange={this.handleChange}
             autoComplete="off"

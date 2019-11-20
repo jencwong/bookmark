@@ -14,9 +14,9 @@ class FormNew extends Component {
   }
 
   handleChange(event) {
-    const { id, value } = event.target;
+    const { name, value } = event.target;
     this.setState({
-      [id]: value
+      [name]: value
     });
   }
 
@@ -30,7 +30,7 @@ class FormNew extends Component {
       title: "",
       url: ""
     });
-    this.props.handleAddBookmark(response);
+    this.props.handleAddBookmark(response.data);
   }
 
   render() {
@@ -42,8 +42,8 @@ class FormNew extends Component {
           <input
             className="input"
             type="text"
-            id="title"
             name="title"
+            value={this.state.title}
             placeholder="title"
             onChange={this.handleChange}
             autoComplete="off"
@@ -51,10 +51,9 @@ class FormNew extends Component {
           <label className="label" htmlFor="url"></label>
           <input
             className="input"
-            type="text"
-            id="url"
             name="url"
             placeholder="url"
+            value={this.state.url}
             onChange={this.handleChange}
             autoComplete="off"
           />
