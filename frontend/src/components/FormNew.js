@@ -21,8 +21,9 @@ class FormNew extends Component {
   }
 
   handleChange(event) {
+    const { name, value } = event.target;
     this.setState({
-      [event.currentTarget.name]: event.currentTarget.value
+      [name]: value
     });
   }
 
