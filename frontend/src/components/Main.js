@@ -3,6 +3,7 @@
 //==============================
 import React, { Component } from "react";
 import FormNew from "./FormNew.js";
+import FormUpdate from "./FormUpdate.js";
 import axios from "axios";
 
 const baseURL = "http://localhost:3003";
@@ -45,6 +46,16 @@ class Main extends Component {
     });
   }
 
+  async deleteBookmark(id) {
+    await axios.delete(`${baseURL}/bookmarks/${id}`);
+    const filteredBookmarks = this.state.bookmarks.filter(bookmark => {
+      return bookmark._id !== id;
+    });
+    this.setState({
+      bookmarks: filteredBookmarks
+    });
+  }
+
   render() {
     return (
       <div className="container is-fluid has-background-grey-lighter">
@@ -56,7 +67,12 @@ class Main extends Component {
               <a key={bookmark._id} href={bookmark.url}>
                 <li class="subtitle is-2">
                   {bookmark.title}
-                  <button className="button is-link">删掉bye了</button>
+                  <button
+                    className="button is-link"
+                    onClick={() => this.deleteBookmark(bookmark._id)}
+                  >
+                    删掉bye了
+                  </button>
                 </li>
               </a>
             );
