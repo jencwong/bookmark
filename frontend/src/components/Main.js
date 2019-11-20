@@ -34,14 +34,14 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
-        <h1>The Most 棒 Bookmark App</h1>
+      <div className="container is-fluid has-background-grey-lighterx">
+        <h1 className="title is-1">The Most 棒 Bookmark App</h1>
         <FormNew getBookmarks={this.getBookmarks} baseURL={baseURL} />
         <ul>
           {this.state.bookmarks.map(bookmark => {
             return (
               <a key={bookmark._id} href={bookmark.url}>
-                <li>{bookmark.title}</li>
+                <li class="subtitle is-2">{bookmark.title}</li>
               </a>
             );
           })}

@@ -28,11 +28,12 @@ class FormNew extends Component {
 
   render() {
     return (
-      <div>
+      <div className="control">
         <h2>New Bookmark</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="title"></label>
+          <label className="label" htmlFor="title"></label>
           <input
+            className="input"
             type="text"
             id="title"
             name="title"
@@ -41,8 +42,9 @@ class FormNew extends Component {
             onChange={this.handleChange}
             autoComplete="off"
           />
-          <label htmlFor="url"></label>
+          <label className="label" htmlFor="url"></label>
           <input
+            className="input"
             type="text"
             id="url"
             name="url"
@@ -51,7 +53,11 @@ class FormNew extends Component {
             onChange={this.handleChange}
             autoComplete="off"
           />
-          <input type="submit" value="ADD BOOKMARK" />
+          <input
+            className="button is-link"
+            type="submit"
+            value="ADD BOOKMARK"
+          />
         </form>
       </div>
     );
