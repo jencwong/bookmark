@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+const baseURL = "http://localhost:3003";
 
 class FormNew extends Component {
   constructor(props) {
@@ -11,20 +13,24 @@ class FormNew extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handleChange(event) {
+    const { id, value } = event.target;
+    this.setState({
+      [id]: value
+    });
+  }
+
   async handleSubmit(event) {
     event.preventDefault();
+    const response = await axios.post(`${baseURL}/bookmarks`, {
+      title: this.state.title,
+      url: this.state.url
+    });
     this.setState({
       title: "",
       url: ""
     });
-    this.props.getBookmarks();
-  }
-
-  handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    this.props.handleAddBookmark(response);
   }
 
   render() {
@@ -38,7 +44,6 @@ class FormNew extends Component {
             type="text"
             id="title"
             name="title"
-            value={this.state.title}
             placeholder="title"
             onChange={this.handleChange}
             autoComplete="off"
@@ -49,16 +54,11 @@ class FormNew extends Component {
             type="text"
             id="url"
             name="url"
-            value={this.state.url}
             placeholder="url"
             onChange={this.handleChange}
             autoComplete="off"
           />
-          <input
-            className="button is-link"
-            type="submit"
-            value="ADD BOOKMARK"
-          />
+          <input className="button is-link" type="submit" value="加 BOOKMARK" />
         </form>
       </div>
     );

@@ -15,9 +15,12 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookmarks: []
+      bookmarks: [],
+      bookmark: {}
     };
     this.getBookmarks = this.getBookmarks.bind(this);
+    this.getBookmark = this.getBookmark.bind(this);
+    this.handleAddBookmark = this.handleAddBookmark.bind(this);
   }
 
   componentDidMount() {
@@ -26,22 +29,35 @@ class Main extends Component {
 
   async getBookmarks() {
     const response = await axios(`${baseURL}/bookmarks`);
-    const data = response.data;
+    const bookmarks = response.data;
     this.setState({
-      bookmarks: data
+      bookmarks: bookmarks
+    });
+  }
+
+  getBookmark(bookmark) {
+    this.setState({ bookmark: bookmark });
+  }
+
+  handleAddBookmark(bookmark) {
+    this.setState({
+      bookmarks: [...this.state.bookmarks, bookmark]
     });
   }
 
   render() {
     return (
       <div className="container is-fluid has-background-grey-lighter">
-        <h1 className="title is-1">The Most 棒 Bookmark App</h1>
-        <FormNew getBookmarks={this.getBookmarks} baseURL={baseURL} />
+        <h1 className="title is-1">The Most 棒 Bookmark Appy</h1>
+        <FormNew handleAddBookmark={this.handleAddBookmark} />
         <ul>
           {this.state.bookmarks.map(bookmark => {
             return (
               <a key={bookmark._id} href={bookmark.url}>
-                <li class="subtitle is-2">{bookmark.title}</li>
+                <li class="subtitle is-2">
+                  {bookmark.title}
+                  <button className="button is-link">删掉bye了</button>
+                </li>
               </a>
             );
           })}
