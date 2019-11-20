@@ -34,7 +34,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div className="container is-fluid has-background-grey-lighterx">
+      <div className="container is-fluid has-background-grey-lighter">
         <h1 className="title is-1">The Most 棒 Bookmark App</h1>
         <FormNew getBookmarks={this.getBookmarks} baseURL={baseURL} />
         <ul>
