@@ -22,6 +22,7 @@ class Main extends Component {
     this.getBookmarks = this.getBookmarks.bind(this);
     this.getBookmark = this.getBookmark.bind(this);
     this.handleAddBookmark = this.handleAddBookmark.bind(this);
+    this.deleteBookmark = this.deleteBookmark.bind(this);
   }
 
   componentDidMount() {
@@ -64,17 +65,17 @@ class Main extends Component {
         <ul>
           {this.state.bookmarks.map(bookmark => {
             return (
-              <a key={bookmark._id} href={bookmark.url}>
-                <li class="subtitle is-2">
-                  {bookmark.title}
-                  <button
-                    className="button is-link"
-                    onClick={() => this.deleteBookmark(bookmark._id)}
-                  >
-                    删掉bye了
-                  </button>
-                </li>
-              </a>
+              <div key={bookmark._id} href={bookmark.url}>
+                <a>
+                  <li class="subtitle is-2">{bookmark.title}</li>
+                </a>
+                <button
+                  className="button is-link"
+                  onClick={() => this.deleteBookmark(bookmark._id)}
+                >
+                  删掉bye了
+                </button>
+              </div>
             );
           })}
         </ul>
