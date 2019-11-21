@@ -79,10 +79,14 @@ class Main extends Component {
           />
         )}
         {this.state.newform ? null : (
-          <div
-            // className="button is-link" comment out and change button to div so it does not render when clicked
-            onClick={() => this.toggleForm()}
-          ></div>
+          <button className="button is-link" onClick={() => this.toggleForm()}>
+            加 BOOKMARK
+          </button>
+
+          // <div
+          //   // className="button is-link" comment out and change button to div so it does not render when clicked
+          //   onClick={() => this.toggleForm()}
+          // ></div>
         )}
         <h2 className="subtitle is-1">
           <strong>Bookmark List</strong>
