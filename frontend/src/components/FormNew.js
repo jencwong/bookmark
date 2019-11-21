@@ -36,28 +36,45 @@ class FormNew extends Component {
   render() {
     return (
       <div className="control">
-        <h2>New Bookmark</h2>
+        <h2 className="subtitle is-3">
+          <strong>New Bookmark</strong>
+        </h2>
         <form onSubmit={this.handleSubmit}>
-          <label className="label" htmlFor="title"></label>
-          <input
-            className="input"
-            type="text"
-            name="title"
-            value={this.state.title}
-            placeholder="title"
-            onChange={this.handleChange}
-            autoComplete="off"
-          />
-          <label className="label" htmlFor="url"></label>
-          <input
-            className="input"
-            name="url"
-            placeholder="url"
-            value={this.state.url}
-            onChange={this.handleChange}
-            autoComplete="off"
-          />
-          <input className="button is-link" type="submit" value="加 BOOKMARK" />
+          <div className="field is-horizontal">
+            <div className="field-body">
+              <div className="field">
+                <label className="label" htmlFor="title"></label>
+
+                <input
+                  className="input is-medium is-info"
+                  type="text"
+                  name="title"
+                  value={this.state.title}
+                  placeholder="title"
+                  onChange={this.handleChange}
+                  autoComplete="off"
+                />
+              </div>
+              <div className="field">
+                <label className="label" htmlFor="url"></label>
+                <input
+                  className="input is-medium is-info"
+                  name="url"
+                  placeholder="url"
+                  value={this.state.url}
+                  onChange={this.handleChange}
+                  autoComplete="off"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="buttons is-centered are-medium">
+            <input
+              className="button is-link"
+              type="submit"
+              value="加 BOOKMARK"
+            />
+          </div>
         </form>
       </div>
     );

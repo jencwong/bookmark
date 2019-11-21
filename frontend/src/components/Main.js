@@ -79,33 +79,39 @@ class Main extends Component {
           />
         )}
         {this.state.newform ? null : (
-          <button className="button is-link" onClick={() => this.toggleForm()}>
-            加 BOOKMARK
-          </button>
+          <div
+            // className="button is-link" comment out and change button to div so it does not render when clicked
+            onClick={() => this.toggleForm()}
+          ></div>
         )}
-        <ul>
-          {this.state.bookmarks.map(bookmark => {
-            return (
-              <div key={bookmark._id}>
+        <h2 className="subtitle is-1">
+          <strong>Bookmark List</strong>
+        </h2>
+        {this.state.bookmarks.map(bookmark => {
+          return (
+            <div key={bookmark._id}>
+              <ul>
                 <a href={bookmark.url}>
                   <li className="subtitle is-2">{bookmark.title}</li>
                 </a>
-                <button
-                  className="button is-link"
-                  onClick={() => this.getBookmark(bookmark)}
-                >
-                  Edit啦
-                </button>
-                <button
-                  className="button is-link"
-                  onClick={() => this.deleteBookmark(bookmark._id)}
-                >
-                  删掉bye了
-                </button>
-              </div>
-            );
-          })}
-        </ul>
+                <div className="buttons is-centered are-normal">
+                  <button
+                    className="button is-warning"
+                    onClick={() => this.getBookmark(bookmark)}
+                  >
+                    Edit啦
+                  </button>
+                  <button
+                    className="button is-danger"
+                    onClick={() => this.deleteBookmark(bookmark._id)}
+                  >
+                    删掉bye了
+                  </button>
+                </div>
+              </ul>
+            </div>
+          );
+        })}
       </div>
     );
   }

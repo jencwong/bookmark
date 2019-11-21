@@ -52,31 +52,48 @@ class FormUpdate extends Component {
   render() {
     return (
       <div className="control">
-        <h2>Edit Bookmark</h2>
+        <h2 className="subtitle is-3">
+          <strong>Edit Bookmark</strong>
+        </h2>
         <form onSubmit={this.handleSubmit}>
-          <label className="label" htmlFor="title"></label>
-          <input
-            className="input"
-            type="text"
-            id="title"
-            name="title"
-            placeholder="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-            autoComplete="off"
-          />
-          <label className="label" htmlFor="url"></label>
-          <input
-            className="input"
-            type="text"
-            id="url"
-            name="url"
-            value={this.state.url}
-            placeholder="url"
-            onChange={this.handleChange}
-            autoComplete="off"
-          />
-          <input className="button is-link" type="submit" value="改 BOOKMARK" />
+          <div className="field is-horizontal">
+            <div className="field-body">
+              <div className="field">
+                <label className="label" htmlFor="title"></label>
+
+                <input
+                  className="input is-medium is-primary"
+                  type="text"
+                  id="title"
+                  name="title"
+                  placeholder="title"
+                  value={this.state.title}
+                  onChange={this.handleChange}
+                  autoComplete="off"
+                />
+              </div>
+              <div className="field">
+                <label className="label" htmlFor="url"></label>
+                <input
+                  className="input is-medium is-primary"
+                  type="text"
+                  id="url"
+                  name="url"
+                  value={this.state.url}
+                  placeholder="url"
+                  onChange={this.handleChange}
+                  autoComplete="off"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="buttons is-centered are-medium">
+            <input
+              className="button is-link"
+              type="submit"
+              value="改 BOOKMARK"
+            />
+          </div>
         </form>
       </div>
     );
