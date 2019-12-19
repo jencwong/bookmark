@@ -6,7 +6,11 @@ import FormNew from "./FormNew.js";
 import FormUpdate from "./FormUpdate.js";
 import axios from "axios";
 
-const baseURL = "http://localhost:3003";
+let baseURL = "https://bookmark-app-by-jj.herokuapp.com";
+
+if (process.env.NODE_ENV === "development") {
+  baseURL = "http://localhost:3003";
+}
 
 //==============================
 //        COMPONENTS
