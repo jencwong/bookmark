@@ -3,7 +3,7 @@
 //==============================
 const mongoose = require("mongoose");
 const BookmarkModel = require("./bookmarks.js");
-let mongodbURI = process.env.MONGODB_URL;
+let mongodbURI = process.env.MONGODB_URI;
 
 if (process.env.NODE_ENV === "development") {
   mongodbURI = "mongodb://localhost:27017/bookmarks";

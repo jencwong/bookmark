@@ -9,7 +9,7 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3003;
 const mongodbURI =
-  process.env.MONGODB_URL || "mongodb://localhost:27017/bookmarks";
+  process.env.MONGODB_URI || "mongodb://localhost:27017/bookmarks";
 
 //==============================
 //     MONGOOSE CONNECTION
