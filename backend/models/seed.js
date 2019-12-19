@@ -3,6 +3,8 @@
 //==============================
 const mongoose = require("mongoose");
 const BookmarkModel = require("./bookmarks.js");
+const mongodbURI =
+  process.env.MONGODB_URL || "mongodb://localhost:27017/bookmarks";
 
 //==============================
 //       SEED DATA
@@ -31,8 +33,7 @@ const seedBookmarks = [
 //==============================
 const seedDB = () => {
   // Declare db name, URI, and instantiate connection
-  const dbName = "bookmarks";
-  const dbURI = `mongodb://localhost:27017/${dbName}`;
+  const dbURI = mongodbURI;
   const dbConnection = mongoose.connection;
 
   dbConnection.on("error", err => console.log("DB Connection Error: ", err));
@@ -40,7 +41,7 @@ const seedDB = () => {
   dbConnection.on("disconnected", () => console.log("DB Disconnected"));
 
   mongoose.connect(dbURI, { useNewUrlParser: true }, () =>
-    console.log(`${dbName} db running on ${dbURI}`)
+    console.log(`DB running on ${dbURI}`)
   );
   BookmarkModel.collection.drop();
 
