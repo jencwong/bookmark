@@ -3,8 +3,11 @@
 //==============================
 const mongoose = require("mongoose");
 const BookmarkModel = require("./bookmarks.js");
-const mongodbURI =
-  process.env.MONGODB_URL || "mongodb://localhost:27017/bookmarks";
+let mongodbURI = process.env.MONGODB_URL;
+
+if (process.env.NODE_ENV === "development") {
+  mongodbURI = "mongodb://localhost:27017/bookmarks";
+}
 
 //==============================
 //       SEED DATA
